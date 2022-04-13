@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/TheDevs-Network/kutt#readme",
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "@sentry/apm": "^5.21.1",
     "@sentry/node": "^5.21.1",
     "@sentry/react": "^5.21.1",

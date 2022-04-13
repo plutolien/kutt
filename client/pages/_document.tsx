@@ -96,7 +96,7 @@ class AppDocument extends Document<Props> {
         <body
           style={{
             margin: 0,
-            backgroundColor: Colors.Bg,
+            backgroundColor: "#ffffff",
             font: '16px/1.45 "Nunito", sans-serif',
             overflowX: "hidden",
             color: Colors.Text
