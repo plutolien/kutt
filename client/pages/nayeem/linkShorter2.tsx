@@ -227,7 +227,7 @@ const StyledLinkShorterTable = styled.div`
 const StyledLinkShorterPagination = styled.div`
   margin-top: 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
     .wrapper {
         .page-number {
@@ -252,6 +252,7 @@ const StyledLinkShorterPagination = styled.div`
     }
     
     .pagination-action {
+    margin-left: 40px;
        .prev {
           display: inline-block;
             button {
