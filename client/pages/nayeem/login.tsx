@@ -45,13 +45,14 @@ const StyledInput = styled.div`
         box-sizing: border-box;
         border-radius: 15px;
         padding: 23px 14px;
-
+        
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
         line-height: 32px;
-        color: #677487;
+        color: #1D2736;
+        outline: none;
     }
 `;
 
