@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../../components/nayeem/Header';
-import LinkShorterHeader from "../../components/nayeem/LinkShorterHeader";
+import Header from '../../components/core/Header';
+import LinkShorterHeader from "../../components/core/LinkShorterHeader";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 import { BarChart, Bar, Legend } from 'recharts';
 import { Grid } from "@material-ui/core";
-import Container from '../../components/nayeem/Container';
+import Container from '../../components/core/Container';
 
 
 const DashboardContainer = styled.div`

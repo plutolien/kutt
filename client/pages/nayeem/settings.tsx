@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../../components/nayeem/Header';
-import LinkShorterHeader from "../../components/nayeem/LinkShorterHeader";
-import Container from "../../components/nayeem/Container";
-import SingleSetting from "../../components/nayeem/SingleSetting";
+import Header from '../../components/core/Header';
+import LinkShorterHeader from "../../components/core/LinkShorterHeader";
+import Container from "../../components/core/Container";
+import SingleSetting from "../../components/core/SingleSetting";
 
 const StyledSettings = styled.div`
     background: #FFFFFF;

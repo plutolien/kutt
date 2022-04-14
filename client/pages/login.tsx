@@ -1,37 +1,126 @@
-import { useFormState } from "react-use-form-state";
 import React, { useEffect, useState } from "react";
-import { Flex } from "reflexbox/styled-components";
-import emailValidator from "email-validator";
-import styled from "styled-components";
+import { useFormState } from "react-use-form-state";
+import styled from 'styled-components';
+import Header from '../components/core/Header';
+import { useStoreState, useStoreActions } from "../store";
+import { APIv2, DISALLOW_REGISTRATION } from "../consts";
 import Router from "next/router";
 import Link from "next/link";
 import axios from "axios";
-
-import { useStoreState, useStoreActions } from "../store";
-import { APIv2, DISALLOW_REGISTRATION } from "../consts";
-import { ColCenterV } from "../components/Layout";
-import AppWrapper from "../components/AppWrapper";
-import { TextInput } from "../components/Input";
-import { fadeIn } from "../helpers/animations";
-import { Button } from "../components/Button";
+import emailValidator from "email-validator";
 import Text, { H2 } from "../components/Text";
-import ALink from "../components/ALink";
-import Icon from "../components/Icon";
 
-const LoginForm = styled(Flex).attrs({
-  as: "form",
-  flexDirection: "column"
-})`
-  animation: ${fadeIn} 0.8s ease-out;
+const StyledLoginForm = styled.form`
+    padding-bottom: 225px;
+    background: #FFFFFF;
+    .form-wrapper {
+        padding-top: 60px;
+        margin: auto;
+        width: 464px;
+
+        h1.form-title {
+            margin: 0;
+            padding: 0;
+            color: #1D2736;
+            text-align: center;
+            font-size: 48px;
+            font-family: "Poppins";
+            font-weight: 700;
+            line-height: 52.8px;
+            letter-spacing: -3px; 
+            margin-bottom: 40px;
+        }
+    }
 `;
 
-const Email = styled.span`
-  font-weight: normal;
-  color: #512da8;
-  border-bottom: 1px dotted #999;
+const StyledInput = styled.div`
+    margin-top: 32px;
+    .label {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 25px;
+        color: #677487;
+        text-align: left;
+        padding-bottom: 8px; 
+    }
+    input {
+        width: 464px;
+        height: 60px;
+        background: #FFFFFF;
+        border: 1px solid #DFE8FA;
+        box-sizing: border-box;
+        border-radius: 15px;
+        padding: 23px 14px;
+        
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 32px;
+        color: #1D2736;
+        outline: none;
+    }
 `;
 
-const LoginPage = () => {
+const StyledForgetPass = styled.div`
+    .forget-pass {
+        margin-top: 12px; 
+        text-align: right !important;
+        a {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 29px;
+            text-decoration-line: underline;
+            color: #F0998D;
+        }
+    }
+    
+`;
+
+const StyledLoginActionButtons = styled.div`
+    margin-top: 50px;
+    display flex;
+    justify-content: space-between;
+    .register {
+        button {
+            width: 152px;
+            height: 59px;
+            background: #FFF0EC;
+            border-radius: 15px;
+            border: none;
+
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 27px;
+            color: #F0998D;
+        }
+    }
+    .login {
+        button {
+            width: 152px;
+            height: 59px;
+            background: #F0998D;
+            border-radius: 15px;
+            border: none;
+
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 27px;
+            color: #FFFFFF;
+        }
+    }
+    
+`;
+
+const Login = () => {
   const { isAuthenticated } = useStoreState(s => s.auth);
   const login = useStoreActions(s => s.auth.login);
   const [error, setError] = useState("");
@@ -96,92 +185,45 @@ const LoginPage = () => {
   }
 
   return (
-    <AppWrapper>
-      <ColCenterV maxWidth="100%" px={3} flex="0 0 auto" mt={4}>
-        {verifying ? (
-          <H2 textAlign="center" light>
-            A verification email has been sent to{" "}
-            <Email>{formState.values.email}</Email>.
-          </H2>
-        ) : (
-          <LoginForm id="login-form" onSubmit={onSubmit("login")}>
-            <Text {...label("email")} as="label" mb={2} bold>
-              Email address:
-            </Text>
-            <TextInput
-              {...email("email")}
-              placeholder="Email address..."
-              height={[56, 64, 72]}
-              fontSize={[15, 16]}
-              px={[4, 40]}
-              mb={[24, 4]}
-              width={[300, 400]}
-              maxWidth="100%"
-              autoFocus
-            />
-            <Text {...label("password")} as="label" mb={2} bold>
-              Password{!DISALLOW_REGISTRATION ? " (min chars: 8)" : ""}:
-            </Text>
-            <TextInput
-              {...password("password")}
-              placeholder="Password..."
-              px={[4, 40]}
-              height={[56, 64, 72]}
-              fontSize={[15, 16]}
-              width={[300, 400]}
-              maxWidth="100%"
-              mb={[24, 4]}
-            />
-            <Flex justifyContent="center">
-              <Button
-                flex="1 1 auto"
-                mr={!DISALLOW_REGISTRATION ? ["8px", 16] : 0}
-                height={[44, 56]}
-                onClick={onSubmit("login")}
-              >
-                <Icon
-                  name={loading.login ? "spinner" : "login"}
-                  stroke="white"
-                  mr={2}
-                />
-                Log in
-              </Button>
-              {!DISALLOW_REGISTRATION && (
-                <Button
-                  flex="1 1 auto"
-                  ml={["8px", 16]}
-                  height={[44, 56]}
-                  color="purple"
-                  onClick={onSubmit("signup")}
-                >
-                  <Icon
-                    name={loading.signup ? "spinner" : "signup"}
-                    stroke="white"
-                    mr={2}
-                  />
-                  Sign up
-                </Button>
-              )}
-            </Flex>
-            <Link href="/reset-password">
-              <ALink
-                href="/reset-password"
-                title="Forget password"
-                fontSize={14}
-                alignSelf="flex-start"
-                my={16}
-              >
-                Forgot your password?
-              </ALink>
-            </Link>
-            <Text color="red" mt={1} normal>
-              {error}
-            </Text>
-          </LoginForm>
-        )}
-      </ColCenterV>
-    </AppWrapper>
-  );
-};
+    <div>
+      <StyledLoginForm onSubmit={onSubmit("login")}>
+        <Header />
+        <div className="form-wrapper">
+          <h1 className='form-title'>Login</h1>
+          <StyledInput>
+            <div className="label">
+              Email Address
+            </div>
+            <input type="text" placeholder='Enter your email address..' {...email("email")} />
+          </StyledInput>
+          <StyledInput>
+            <div className="label">
+              Password
+            </div>
+            <input type="password" placeholder='Password' {...password("password")} />
+          </StyledInput>
+          <StyledForgetPass>
+            <div className="forget-pass">
+              <Link href="/reset-password">Forget Password?</Link>
+            </div>
+          </StyledForgetPass>
 
-export default LoginPage;
+          <Text color="red" mt={1} normal>
+            {error}
+          </Text>
+
+          <StyledLoginActionButtons>
+            <div className="register">
+              <button onClick={onSubmit("signup")}>Register</button>
+            </div>
+            <div className="login">
+              <button onClick={onSubmit("login")}>Login</button>
+            </div>
+          </StyledLoginActionButtons>
+        </div>
+      </StyledLoginForm>
+    </div>
+  );
+}
+
+export default Login;
