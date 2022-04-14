@@ -29,12 +29,15 @@ const StyledHeader = styled.div`
                     li {
                         padding-right: 40px;
                         display: inline-block;
+                        cursor: pointer;
+
                         a {
                             text-decoration: none;
                             color: #1D2736;
                             font-family: Poppins;
                             font-size: 14px;
                             line-height: 22.4px;
+                            cursor: pointer;
                         }
                     }
                 }
@@ -56,6 +59,7 @@ const StyledHeader = styled.div`
                 font-weight: 500;
                 font-size: 16px;
                 Line-height: 25.6px;
+                cursor: pointer;
 
             }
         }
@@ -73,6 +77,7 @@ const StyledHeader = styled.div`
                 font-weight: 500;
                 font-size: 16px;
                 Line-height: 25.6px;
+                cursor: pointer;
             }
         }
     }

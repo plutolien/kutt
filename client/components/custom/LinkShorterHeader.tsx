@@ -33,6 +33,7 @@ const StyledHeader = styled.div`
                 font-size: 14px;
                 line-height: 22px;
                 color: #1D2736;
+                cursor: pointer;
 
             }
         }
@@ -50,6 +51,7 @@ const StyledHeader = styled.div`
                 font-weight: 500;
                 font-size: 16px;
                 Line-height: 25.6px;
+                cursor: pointer;
             }
         }
     }
