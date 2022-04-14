@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Container from "./Container";
+import Link from "next/link";
 
 const StyledHeader = styled.div`
     height: 100px;
@@ -11,6 +12,8 @@ const StyledHeader = styled.div`
         display: flex;
         align-items: center;
         .logo {
+            cursor: pointer;
+            
             img {
                 width: 130px;
                 height: 32px;
@@ -58,7 +61,9 @@ const LinkShorterHeader = () => {
             <Container>
                 <StyledHeader>
                     <div className="logo">
+                    <Link href="/">
                         <img src={'/nayeem/images/logo.png'} alt="" />
+                        </Link>
                     </div>
 
                     <div className="actions">

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Container from "./Container";
+import Link from "next/link";
 
 const StyledHeader = styled.div`
     height: 100px;
@@ -8,6 +9,7 @@ const StyledHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     background: #fff;
+
     .wrapper {
         display: flex;
         align-items: center;
@@ -77,13 +79,15 @@ const StyledHeader = styled.div`
 `;
 
 const Header = () => {
-    return(
+    return (
         <div>
             <Container>
                 <StyledHeader>
                     <div className="wrapper">
                         <div className="logo">
-                            <img src={'/nayeem/images/logo.png'} alt="" />
+                            <Link href="/">
+                                <img src={'/nayeem/images/logo.png'} alt="" />
+                            </Link>
                         </div>
 
                         <div className="nav">
@@ -91,7 +95,7 @@ const Header = () => {
                                 <ul>
                                     <li> <a href="#">Github</a> </li>
                                     <li> <a href="#">Report</a> </li>
-                                </ul>    
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -106,7 +110,7 @@ const Header = () => {
                     </div>
                 </StyledHeader>
             </Container>
-            
+
         </div>
     );
 }

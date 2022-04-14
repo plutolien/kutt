@@ -1,8 +1,13 @@
 import cookie from "js-cookie";
 import { AxiosRequestConfig, AxiosError } from "axios";
 
-export const removeProtocol = (link: string) =>
-  link.replace(/^https?:\/\//, "");
+export const removeProtocol = (link: any) => {
+  if(!link) {
+    return '';
+  }
+  
+  return link.replace(/^https?:\/\//, "");
+}
 
 export const withComma = (num: number) =>
   num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
