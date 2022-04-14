@@ -1,45 +1,63 @@
-import { NextPage } from "next";
-import React from "react";
-
-import SettingsDeleteAccount from "../components/Settings/SettingsDeleteAccount";
-import SettingsChangeEmail from "../components/Settings/SettingsChangeEmail";
-import SettingsPassword from "../components/Settings/SettingsPassword";
-import SettingsDomain from "../components/Settings/SettingsDomain";
-import SettingsApi from "../components/Settings/SettingsApi";
-import AppWrapper from "../components/AppWrapper";
-import { H1, Span } from "../components/Text";
-import Divider from "../components/Divider";
-import { Col } from "../components/Layout";
-import Footer from "../components/Footer";
+import React from 'react';
+import styled from 'styled-components';
+import Header from '../components/custom/Header';
+import LinkShorterHeader from "../components/custom/LinkShorterHeader";
+import Container from "../components/custom/Container";
+import SingleSetting from "../components/custom/SingleSetting";
 import { useStoreState } from "../store";
+import SettingsDomain from '../components/custom/SettingsDomain';
+import SettingsApi from '../components/custom/SettingsApi';
+import SettingsPassword from '../components/custom/SettingsPassword';
+import SettingsChangeEmail from '../components/custom/SettingsChangeEmail';
+import SettingsDeleteAccount from '../components/custom/SettingsDeleteAccount';
 
-const SettingsPage: NextPage = () => {
+const StyledSettings = styled.div`
+    background: #FFFFFF;
+`;
+const StyledContentContainer = styled.div`
+    margin: auto;
+    width: 880px;
+`;
+const StyledGretings = styled.div`
+    margin-top: 60px;
+    border-bottom: 1px solid #DFE8FA;
+    padding-bottom: 24px;
+    h4 {
+        margin: 0;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 31px;
+        letter-spacing: -0.02em;
+        color: #1D2736;
+    }
+`;
+
+
+const Settings = () => {
   const email = useStoreState(s => s.auth.email);
 
   return (
-    <AppWrapper>
-      <Col width={600} maxWidth="90%" alignItems="flex-start" pb={80} mt={4}>
-        <H1 alignItems="center" fontSize={[24, 28]} light>
-          Welcome,{" "}
-          <Span pb="2px" style={{ borderBottom: "2px dotted #999" }}>
-            {email}
-          </Span>
-          .
-        </H1>
-        <Divider mt={4} mb={48} />
-        <SettingsDomain />
-        <Divider mt={4} mb={48} />
-        <SettingsApi />
-        <Divider mt={4} mb={48} />
-        <SettingsPassword />
-        <Divider mt={4} mb={48} />
-        <SettingsChangeEmail />
-        <Divider mt={4} mb={48} />
-        <SettingsDeleteAccount />
-      </Col>
-      <Footer />
-    </AppWrapper>
-  );
-};
+    <div>
+      <StyledSettings>
+        <LinkShorterHeader />
+        <Container>
+          <StyledContentContainer>
+            <StyledGretings>
+              <h4>Welcome,{" "} {email}</h4>
+            </StyledGretings>
 
-export default SettingsPage;
+            <SettingsDomain />
+            <SettingsApi />
+            <SettingsPassword />
+            <SettingsChangeEmail />
+            <SettingsDeleteAccount />
+          </StyledContentContainer>
+        </Container>
+      </StyledSettings>
+    </div>
+  );
+}
+
+export default Settings;

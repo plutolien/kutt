@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFormState } from "react-use-form-state";
 import styled from 'styled-components';
-import Header from '../components/core/Header';
+import Header from '../components/custom/Header';
 import { useStoreState, useStoreActions } from "../store";
 import { APIv2, DISALLOW_REGISTRATION } from "../consts";
 import Router from "next/router";
@@ -10,9 +10,11 @@ import axios from "axios";
 import emailValidator from "email-validator";
 import Text, { H2 } from "../components/Text";
 
+
 const StyledLoginForm = styled.form`
     padding-bottom: 225px;
     background: #FFFFFF;
+
     .form-wrapper {
         padding-top: 60px;
         margin: auto;
@@ -92,7 +94,7 @@ const StyledLoginActionButtons = styled.div`
             background: #FFF0EC;
             border-radius: 15px;
             border: none;
-
+            cursor: pointer;
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 600;
@@ -108,7 +110,7 @@ const StyledLoginActionButtons = styled.div`
             background: #F0998D;
             border-radius: 15px;
             border: none;
-
+            cursor: pointer;
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 600;
