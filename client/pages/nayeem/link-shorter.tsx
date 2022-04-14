@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import LinkShorterHeader from "../../components/core/LinkShorterHeader";
-import Container from "../../components/core/Container";
+import LinkShorterHeader from "../../components/custom/LinkShorterHeader";
+import Container from "../../components/custom/Container";
 
 const StyledLinkShorter = styled.div`
     background: #FFFFFF;

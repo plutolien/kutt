@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../../components/core/Header';
+import Header from '../../components/custom/Header';
 
 const StyledLoginForm = styled.div`
     padding-bottom: 225px;
